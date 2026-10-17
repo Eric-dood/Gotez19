@@ -18,6 +18,9 @@ int main() {
     srand(time(0));
     bool again;
 
+    //Create a list of Goats
+    list<Goat> goatList;
+
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
     string names[SZ_NAMES];
@@ -38,18 +41,19 @@ int main() {
         switch (choice)
         {
             case 1:
-                add_goat();
+                add_goat(goatList, names, colors);
                 break;
             case 2:
-                delete_goat();
+                //delete_goat(goatList);
                 break;
             case 3:
-                display_trip();
+                //display_trip(goatList);
                 break;
             case 4:
                 cout << "Quitting... Thanks for trying!" << endl;
                 break;
         }
+        if (choice == 4) break;
     }
 }
 
@@ -70,3 +74,7 @@ int main_menu()
     return temp;
 }
 
+void add_goat(list<Goat> &trip, string name[], string col[])
+{
+
+}
