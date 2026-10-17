@@ -76,5 +76,7 @@ int main_menu()
 
 void add_goat(list<Goat> &trip, string name[], string col[])
 {
-
+    int goatAge = rand() % MAX_AGE + 1;
+    Goat temp = Goat(name[rand() % SZ_NAMES], goatAge, col[rand() % SZ_NAMES]);
+    trip.push_back(temp);
 }
