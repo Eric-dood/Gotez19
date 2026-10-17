@@ -31,7 +31,26 @@ int main() {
     fin1.close();
 
     //Set up a GM3K1 engine
-    int choice = main_menu();
+    int choice = 0;
+    while (true)
+    {
+        choice = main_menu();
+        switch (choice)
+        {
+            case 1:
+                add_goat();
+                break;
+            case 2:
+                delete_goat();
+                break;
+            case 3:
+                display_trip();
+                break;
+            case 4:
+                cout << "Quitting... Thanks for trying!" << endl;
+                break;
+        }
+    }
 }
 
 int main_menu()
