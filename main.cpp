@@ -30,9 +30,24 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
+    //Set up a GM3K1 engine
+    int choice = main_menu();
+}
 
-
-
-    return 0;
+int main_menu()
+{
+    int temp;
+    cout << "*** GOAT MANAGER 3001 ***" << endl; //Print title
+    //Print the list of functions
+    cout << "[1] Add a goat" << endl << "[2] Delete a goat" << endl << "[3] List goats" << endl << "[4] Quit" << endl;
+    while (true)
+    {
+        cout << "Choice --> ";
+        cin >> temp;
+        cin.ignore(1000, 10);
+        if (temp >= 1 && temp <= 4) break;
+        else cout << "ERROR: Please enter between 1 and 4." << endl;
+    }
+    return temp;
 }
 
