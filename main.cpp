@@ -44,10 +44,10 @@ int main() {
                 add_goat(goatList, names, colors);
                 break;
             case 2:
-                //delete_goat(goatList);
+                delete_goat(goatList);
                 break;
             case 3:
-                //display_trip(goatList);
+                display_trip(goatList);
                 break;
             case 4:
                 cout << "Quitting... Thanks for trying!" << endl;
@@ -77,6 +77,26 @@ int main_menu()
 void add_goat(list<Goat> &trip, string name[], string col[])
 {
     int goatAge = rand() % MAX_AGE + 1;
-    Goat temp = Goat(name[rand() % SZ_NAMES], goatAge, col[rand() % SZ_NAMES]);
+    Goat temp = Goat(name[rand() % SZ_NAMES], goatAge, col[rand() % SZ_COLORS]);
     trip.push_back(temp);
+}
+
+void delete_goat(list<Goat> &trip)
+{
+    if (!trip.empty())
+        trip.pop_back();
+    else
+        cout << "List is already empty." << endl;
+}
+
+void display_trip(list<Goat> trip)
+{
+    int count = 1;
+    if (trip.empty())
+        cout << "List is empty." << endl;
+    else
+    {
+        for (Goat value : trip)
+            cout << "[" << count++ << "] " << value.get_name() << " (" << value.get_age() << ", " << value.get_color() << ")" << endl;
+    }
 }
