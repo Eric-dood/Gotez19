@@ -117,7 +117,7 @@ int select_goat(list<Goat> trip, bool big = false)
             //If the temp value is between the min and max values, get out of the loop
             if (temp >= minimum && temp <= maximum) break;
             //Otherwise display an error message
-            else cout << "ERROR: Enter a number between 1 and " << maximum << ": ";
+            else cout << "ERROR: Enter a number between " << minimum << " and " << maximum << ": ";
         }
         //Return the value
         return temp - 1;
@@ -129,44 +129,62 @@ int select_goat(list<Goat> trip, bool big = false)
 //Define add_goat()
 void add_goat(list<Goat> &trip, string name[], string col[])
 {
+    //Define a randomized goat age
     int goatAge = rand() % MAX_AGE + 1;
+    //Define temp, which uses a Goat constructor
     Goat temp = Goat(name[rand() % SZ_NAMES], goatAge, col[rand() % SZ_COLORS]);
+    //If the list is smaller than 1, do a instant insert
     if (trip.size() < 1)
         trip.push_back(temp);
+    //Otherwise ask the user to select a number to insert the new goat after
     else
     {
-        cout << "Select a number to insert the goat before a certain element";
+        //Prompt the user to select a goat
+        cout << "Select a number to insert the goat after a certain element";
         int sel = select_goat(trip, true) + 1;
+        //Search through the list to find the specified value
         auto it = trip.begin();
         advance(it, sel);
+        //Insert the value
         trip.insert(it, temp);
     }
 }
 
 void delete_goat(list<Goat> &trip)
 {
+    //Check if the list isn't empty
     if (!trip.empty())
     {
+        //If the list is smaller than 1, do a instant insert
         if (trip.size() <= 1)
             trip.pop_back();
+        //Otherwise ask the user to select a number to delete an existing goat
         else
         {
+            //Prompt the user to select a goat
             cout << "Select a goat by number to delete";
             int sel = select_goat(trip);
+            //Search through the list to find the specified value
             auto it = trip.begin();
             advance(it, sel);
+            //Delete the specified goat
             trip.erase(it);
         }
     }
+    //Otherwise display a message
     else
         cout << "List is already empty." << endl;
 }
 
+//Define display_trip()
 void display_trip(list<Goat> trip)
 {
+    //This integer is gonna be used for looping
     int count = 1;
+    //Check if the list is empty: if it is, print a message
     if (trip.empty())
         cout << "List is empty." << endl;
+    //Otherwise go through the entire list to print all elements
     else
     {
         for (Goat value : trip)
