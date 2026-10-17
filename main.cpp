@@ -6,29 +6,38 @@
 #include "Goat.h"
 using namespace std;
 
+//Define the global constants
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
+//Prototype functions
 int select_goat(list<Goat> trip, bool);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
 int main_menu();
 
+//Start of main()
 int main() {
+    //Use a random seed generator
     srand(time(0));
-    bool again;
 
     //Create a list of Goats
     list<Goat> goatList;
 
-    // read & populate arrays for names and colors
+    //Read & populate arrays for names and colors
+    //Define fin & read the names file
     ifstream fin("names.txt");
+    //Make an array of names
     string names[SZ_NAMES];
+    //Loop until the maximum name size to store all the names from the textfile
     int i = 0;
     while (fin >> names[i++]);
     fin.close();
+    //Define fin1 & read the colors file
     ifstream fin1("colors.txt");
+    //Make an array of colors
     string colors[SZ_COLORS];
+    //Loop until the maximum color size to store all the color from the textfile
     i = 0;
     while (fin1 >> colors[i++]);
     fin1.close();
@@ -83,7 +92,7 @@ int select_goat(list<Goat> trip, bool big = false)
         cout << "List is empty." << endl;
     else
     {
-        cout << " (between " << minimum << " and " << maximum << "): ";
+        cout << " (between head [" << minimum << "] and tail [" << maximum << "]): ";
         while (true)
         {
             cin >> temp;
