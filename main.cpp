@@ -74,6 +74,27 @@ int main_menu()
     return temp;
 }
 
+int select_goat(list<Goat> trip)
+{
+    int temp;
+    int maximum = trip.size();
+    if (trip.empty())
+        cout << "List is empty." << endl;
+    else
+    {
+        cout << "Select a goat between 1 to " << maximum << ": ";
+        while (true)
+        {
+            cin >> temp;
+            cin.ignore(1000, 10);
+            if (temp >= 1 && temp <= maximum) break;
+            else cout << "ERROR: Enter a number between 1 to " << maximum << ": ";
+        }
+        return temp - 1;
+    }
+    return 0;
+}
+
 void add_goat(list<Goat> &trip, string name[], string col[])
 {
     int goatAge = rand() % MAX_AGE + 1;
@@ -84,7 +105,12 @@ void add_goat(list<Goat> &trip, string name[], string col[])
 void delete_goat(list<Goat> &trip)
 {
     if (!trip.empty())
-        trip.pop_back();
+    {
+        int sel = select_goat(trip);
+        auto it = trip.begin();
+        advance(it, sel);
+        trip.erase(it);
+    }
     else
         cout << "List is already empty." << endl;
 }
