@@ -43,68 +43,90 @@ int main() {
     fin1.close();
 
     //Set up a GM3K1 engine
-    int choice = 0;
+    int choice = 0; //This'll be used for the choicer
+    //Use a while() loop to do a proper validation input
     while (true)
     {
+        //Output the main menu
         choice = main_menu();
+        //Do a different function depending on the value of the choice
         switch (choice)
         {
-            case 1:
+            case 1: //Adds a goat
                 add_goat(goatList, names, colors);
                 break;
-            case 2:
+            case 2: //Removed a goat
                 delete_goat(goatList);
                 break;
-            case 3:
+            case 3: //Displays the goat list
                 display_trip(goatList);
                 break;
-            case 4:
+            case 4: //Quits the application
                 cout << "Quitting... Thanks for trying!" << endl;
                 break;
         }
+        //Do another break for number 4 so that it quits the loop properly
         if (choice == 4) break;
     }
+
+    return 0;
 }
 
+//Define main_menu()
 int main_menu()
 {
+    //Add a temporary variable for returning
     int temp;
     cout << "*** GOAT MANAGER 3001 ***" << endl; //Print title
     //Print the list of functions
     cout << "[1] Add a goat" << endl << "[2] Delete a goat" << endl << "[3] List goats" << endl << "[4] Quit" << endl;
+    //Do a validaiton loop
     while (true)
     {
         cout << "Choice --> ";
         cin >> temp;
         cin.ignore(1000, 10);
+        //If the value is between 1 and 4, exit the loop safely
         if (temp >= 1 && temp <= 4) break;
+        //Otherwise print an error message
         else cout << "ERROR: Please enter between 1 and 4." << endl;
     }
+    //Return the temp variable
     return temp;
 }
 
+//Define select_goat()
 int select_goat(list<Goat> trip, bool big = false)
 {
+    //Temporary variable
     int temp;
+    //Define min & max values
     int minimum = 1 - (int)big;
     int maximum = trip.size();
+    //Check if the list is empty; if it's empty, display a message
     if (trip.empty())
         cout << "List is empty." << endl;
-    else
+    else //Otherwise perform as usual
     {
+        //Do a validation loop
         cout << " (between head [" << minimum << "] and tail [" << maximum << "]): ";
         while (true)
         {
             cin >> temp;
             cin.ignore(1000, 10);
+            //If the temp value is between the min and max values, get out of the loop
             if (temp >= minimum && temp <= maximum) break;
+            //Otherwise display an error message
             else cout << "ERROR: Enter a number between 1 and " << maximum << ": ";
         }
+        //Return the value
         return temp - 1;
     }
+    //If nothing works, just return 0
     return 0;
 }
 
+//Define add_goat()
 void add_goat(list<Goat> &trip, string name[], string col[])
 {
     int goatAge = rand() % MAX_AGE + 1;
