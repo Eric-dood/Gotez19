@@ -150,6 +150,7 @@ void add_goat(list<Goat> &trip, string name[], string col[])
     }
 }
 
+//Define delete_goat()
 void delete_goat(list<Goat> &trip)
 {
     //Check if the list isn't empty
